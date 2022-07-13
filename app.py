@@ -31,17 +31,21 @@ while True:
             if handList[thumb_Coord[0]][0] > handList[thumb_Coord[1]][0]:
                 upCount += 1
         cv2.putText(
-            image, str(upCount), (150, 150), cv2.FONT_HERSHEY_PLAIN, 12, (0, 255, 0), 12
+            image, str(upCount), (150,
+                                  150), cv2.FONT_HERSHEY_PLAIN, 12, (0, 255, 0), 12
         )
-        print(upCount)
-        if upCount == 0:
-            pyautogui.press("down")
-        elif upCount == 1:
-            pyautogui.press("up")
-        elif upCount == 2:
-            pyautogui.press("left")
-        elif upCount == 3:
-            pyautogui.press("right")
 
+        print(upCount)
+        # Provides a virtual keypress to the system
+        # Since 'press' does a keyDown and a keyUp but we require a continuous press therefore added the parameter of 50 presses for each direction
+
+        if upCount == 0:
+            pyautogui.press("down", presses=200)
+        elif upCount == 1:
+            pyautogui.press("up", presses=200)
+        elif upCount == 2:
+            pyautogui.press("right", presses=200)
+        elif upCount == 3:
+            pyautogui.press("left", presses=200)
     cv2.imshow("Counting number of fingers", image)
     cv2.waitKey(1)
