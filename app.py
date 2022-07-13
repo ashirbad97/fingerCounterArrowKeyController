@@ -35,10 +35,10 @@ while True:
                                   150), cv2.FONT_HERSHEY_PLAIN, 12, (0, 255, 0), 12
         )
 
-        print(upCount)
         # Provides a virtual keypress to the system
         # Since 'press' does a keyDown and a keyUp but we require a continuous press therefore added the parameter of 50 presses for each direction
-
+        upCount = upCount-1  # Since due to bug it shows the original +1
+        print(upCount)
         if upCount == 0:
             pyautogui.press("down", presses=200)
         elif upCount == 1:
@@ -48,4 +48,5 @@ while True:
         elif upCount == 3:
             pyautogui.press("left", presses=200)
     cv2.imshow("Counting number of fingers", image)
+
     cv2.waitKey(1)
